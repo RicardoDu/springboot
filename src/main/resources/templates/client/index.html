@@ -8,7 +8,7 @@
 
 
         <!-- 文章遍历并分页展示 : 需要同学们手动完成，基本样式已经给出，请使用th标签及表达式完成页面展示 -->
-        <div th:each="item:${data}">
+        <div th:each="item:${data.getList()}">
             <article class="am-g blog-entry-article">
 
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
@@ -32,31 +32,31 @@
 
                 <!-- 首页 -->
                 <li>
-                    <a th:href="'/list?pageNum=0'">首页</a>
+                    <a th:href="'/index?pageNum=0'">首页</a>
                 </li>
 
                 <!-- 上一页 -->
                 <li th:if="${data.isHasPreviousPage()}">
-                    <a th:href="'/list?pageNum=' + ${data.getPrePage()}" th:text="上一页"></a>
+                    <a th:href="'/index?pageNum=' + ${data.getPrePage()}" th:text="上一页"></a>
                 </li>
 
                 <!-- 中间页 -->
                 <li th:each="pageNum:${#numbers.sequence(0, data.getPages() - 1)}">
-                    <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}"
+                    <a th:href="'/index?pageNum=' + ${pageNum}" th:text="${pageNum + 1}"
                        th:if="${pageNum ne data.getPageNum()}"></a>
-                    <a th:href="'/list?pageNum=' + ${pageNum}" th:text="${pageNum + 1}"
+                    <a th:href="'/index?pageNum=' + ${pageNum}" th:text="${pageNum + 1}"
                        th:if="${pageNum eq data.getPageNum()}"
                        th:style="'font-weight:bold;background: #6faed9;'"></a>
                 </li>
 
                 <!-- 下一页 -->
                 <li th:if="${data.isHasNextPage()}">
-                    <a th:href="'/list?pageNum=' + ${data.getNextPage()}" th:text="下一页"></a>
+                    <a th:href="'/index?pageNum=' + ${data.getNextPage()}" th:text="下一页"></a>
                 </li>
 
                 <!-- 尾页 -->
                 <li>
-                    <a th:href="'/list?pageNum=' + ${data.getLastPage() - 1}">尾页</a>
+                    <a th:href="'/index?pageNum=' + ${data.getLastPage() - 1}">尾页</a>
                 </li>
 
             </ul>

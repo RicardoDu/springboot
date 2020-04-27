@@ -23,8 +23,8 @@ public class LoginController {
     }
 
     @RequestMapping("/index")
-    public String index(Model model, @RequestParam("pageSize") int pageSize,@RequestParam("pageNum") int pageNum){
-        model.addAttribute("data", articleService.getPage(pageSize,pageNum));
+    public String index(Model model,@RequestParam("pageNum") int pageNum){
+        model.addAttribute("data", articleService.getPage(0,pageNum));
         return "client/index";
     }
 }

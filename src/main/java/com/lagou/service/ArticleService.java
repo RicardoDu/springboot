@@ -15,14 +15,14 @@ public class ArticleService {
     @Autowired
     ArticleMapper articleMapper;
 
-    public PageInfo getPage(int pageSize, int pageNum) {
+    public PageInfo<Article> getPage(int pageSize, int pageNum) {
         //默认当前页1
         pageNum = pageNum == 0?1:pageNum;
         //默认每页10
-        pageSize = pageSize == 0?10:pageSize;
+        pageSize = pageSize == 0?2:pageSize;
         PageHelper.startPage(pageNum,pageSize);
         List<Article> articles = articleMapper.selectArticle();
-        PageInfo pageInfo = new PageInfo<>(articles, 5);
+        PageInfo<Article> pageInfo = new PageInfo<>(articles, 5);
         return pageInfo;
     }
 }
